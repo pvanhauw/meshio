@@ -129,8 +129,7 @@ def write(filename, mesh):
         # triangles
         #data_with_label = numpy.c_[tri.shape[1] * numpy.ones(tri.shape[0]), tri]
         data_with_label = numpy.c_[ tri]
-        #numpy.savetxt(data_with_label, 0 , "%d %d %d %d")
-        numpy.savetxt(fh, data_with_label, "%d %d %d 0")
+        numpy.savetxt(fh, data_with_label + 1 ,  "%d %d %d 0")
         
 
     return
