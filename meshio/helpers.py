@@ -18,6 +18,7 @@ from . import svg_io
 from . import vtk_io
 from . import vtu_io
 from . import xdmf_io
+from . import gptria_io
 
 input_filetypes = [
     "abaqus",
@@ -39,6 +40,7 @@ input_filetypes = [
     "vtu-ascii",
     "vtu-binary",
     "xdmf",
+    "gptria",
 ]
 
 output_filetypes = [
@@ -68,6 +70,7 @@ output_filetypes = [
     "xdmf-binary",
     "xdmf-hdf",
     "xdmf-xml",
+    "gptria",
 ]
 
 _extension_to_filetype = {
@@ -92,6 +95,7 @@ _extension_to_filetype = {
     ".inp": "abaqus",
     ".mdpa": "mdpa",
     ".svg": "svg",
+    ".tria": "gptria",
 }
 
 
@@ -165,6 +169,8 @@ def read(filename, file_format=None):
         "abaqus": abaqus_io,
         #
         "mdpa": mdpa_io,
+        #
+        "gptria": gptria_io,
     }
 
     assert file_format in format_to_reader, "Unknown file format '{}' of '{}'.".format(
@@ -257,4 +263,5 @@ _writer_map = {
     "exodus": (exodus_io, (), {}),
     "mdpa": (mdpa_io, (), {}),
     "svg": (svg_io, (), {}),
+    "gptria": (gptria_io, (), {}),
 }
