@@ -32,7 +32,7 @@ def read_buffer(f):
     # <number of vertices>
     # 95200
     num_verts = stripped.split(" ")
-    num_verts = int(num_verts)
+    num_verts = int(num_verts[0])
 
     verts = numpy.empty((num_verts, 3), dtype=float)
 
@@ -63,7 +63,7 @@ def read_buffer(f):
         if stripped and stripped[0] != "#":
             break
     num_faces = stripped.split(" ")
-    num_faces = int(num_faces)
+    num_faces = int(num_faces[0])
 
     # read cells
     triangles = []
@@ -85,9 +85,9 @@ def read_buffer(f):
 
         data = stripped.split()
         num_int = len(data)
-        assert num_points == 4, "Can only handle triangular faces, but 4th value is item (group), 0 by default"
-
-        data = [int(data[0]), int(data[1]), int(data[2])]
+        assert num_int == 4, "Can only handle triangular faces, but 4th value is item (group), 0 by default"
+        offset = -1 
+        data = [int(data[0]) + offset, int(data[1]) + offset, int(data[2]) + offset]
         triangles.append(data)
 
     cells = {}
